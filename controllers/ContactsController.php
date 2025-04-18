@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Contacts;
 use app\models\search\ContactsSearch;
 use app\models\Transactions;
+use app\models\TransactionsContacts;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -127,7 +128,15 @@ class ContactsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        $transaction_contacts = TransactionsContacts::find()->where(['contacts_uuid' => $model->uuid])->all();
+
+        foreach ($transaction_contacts as $transaction_contact) {
+            $transaction_contact->delete();
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }

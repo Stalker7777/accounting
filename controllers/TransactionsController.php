@@ -174,7 +174,15 @@ class TransactionsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        $transaction_contacts = TransactionsContacts::find()->where(['transactions_uuid' => $model->uuid])->all();
+
+        foreach ($transaction_contacts as $transaction_contact) {
+            $transaction_contact->delete();
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }
