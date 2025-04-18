@@ -52,6 +52,9 @@ $config = [
                 '<action>'=>'site/<action>',
             ],
         ],
+        'uuid' => [
+            'class' => 'ollieday\uuid\Uuid',
+        ],
     ],
     'params' => $params,
 ];

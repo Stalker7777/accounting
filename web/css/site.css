@@ -110,3 +110,37 @@ a.desc:after {
 .subtopic-active {
     background-color: yellow;
 }
+
+.menu {
+    padding: 5px 10px;
+    border-radius: 10px;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.menu-active {
+    background-color: yellow;
+}
+
+.submenu {
+    padding: 5px 10px;
+    border-radius: 10px;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.submenu-active {
+    background-color: yellow;
+}
+
+.content {
+    .row {
+        div {
+            padding: 5px 10px;
+        }
+    }
+}
